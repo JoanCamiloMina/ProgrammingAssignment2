@@ -3,9 +3,10 @@
 
 ## Write a short comment describing this function
 
-"makeCacheMatrix, crea una lista de funciones que permiten almacenar y leer 
-en cache la inversa de una matriz"
-#x es por defecto una matriz de 3 x 3 con valores de una distribución normal
+
+"makeCacheMatrix, Creates a list of functions that allow us to store and read 
+in cache the inverse of a matrix"
+#x is by default a 3x3 matrix with a set of normal distribution values 
 makeCacheMatrix <- function(x = matrix(rnorm(9), nrow=3, ncol=3)){
   i <- NULL
   
@@ -22,25 +23,26 @@ makeCacheMatrix <- function(x = matrix(rnorm(9), nrow=3, ncol=3)){
        get_inverse = get_inverse)
 }
 
-"cacheSolve, guarda y lee la inversa de una matriz, usando la funcion 
-makeCacheMatriz, sí encuentra un valor en la cache para la inversa lo retorna 
-en lugar de calcular de nuevo."
+
+"cacheSolve, Stores and reads the inverse of a matrix using the function 
+makeCacheMatrix, If it finds a value for inverse it returns it, otherwise 
+it calculates the inverse and stores it in cache"
 #x es la lista con las funciones generadas por makeCacheMatrix
 cacheSolve <- function(x, ...){
   i<-x$get_inverse()
-  'Valida sí hay la inversa está en cache'
+  'validates if there is a value for inverse stored in cache'
   if(!is.null(i)){
     message("getting cache data")
     return (i)
   }
-  'sí la inversa no está en la cache la calcula y la guarda en cache'
+  'If there is not a value stored in cache it computes and saves it into the cache'
   matrix <- x$get()
   i <- solve(matrix)
   x$set_inverse(i)
   i
 }
 
-"Función para usar la lógica de guardado en cache de la inversa"
+"Just a function to call and test the previous defined functions"
 useMyCacheInverse <- function(){
   makematrixfunc <- makeCacheMatrix()
   
@@ -55,4 +57,5 @@ useMyCacheInverse <- function(){
   
 }
 
+"Just a call for my cache storing logic test"
 useMyCacheInverse()
