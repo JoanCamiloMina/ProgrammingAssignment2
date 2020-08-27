@@ -3,7 +3,8 @@
 
 ## Write a short comment describing this function
 
-"makeCacheMatrix, crea una matriz que puede almacena en cache su inversa"
+"makeCacheMatrix, crea una lista de funciones que permiten almacenar y leer 
+en cache la inversa de una matriz"
 #x es por defecto una matriz de 3 x 3 con valores de una distribución normal
 makeCacheMatrix <- function(x = matrix(rnorm(9), nrow=3, ncol=3)){
   i <- NULL
@@ -21,9 +22,9 @@ makeCacheMatrix <- function(x = matrix(rnorm(9), nrow=3, ncol=3)){
        get_inverse = get_inverse)
 }
 
-"cacheSolve, calcula la inversa de la matriz generada con la función 
-makeCacheMatrix, sí encuentra un valor en la cache lo retorna en lugar
-de calcular."
+"cacheSolve, guarda y lee la inversa de una matriz, usando la funcion 
+makeCacheMatriz, sí encuentra un valor en la cache para la inversa lo retorna 
+en lugar de calcular de nuevo."
 #x es la lista con las funciones generadas por makeCacheMatrix
 cacheSolve <- function(x, ...){
   i<-x$get_inverse()
@@ -39,6 +40,7 @@ cacheSolve <- function(x, ...){
   i
 }
 
+"Función para usar la lógica de guardado en cache de la inversa"
 useMyCacheInverse <- function(){
   makematrixfunc <- makeCacheMatrix()
   
